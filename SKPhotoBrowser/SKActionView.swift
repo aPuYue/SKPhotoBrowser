@@ -10,6 +10,7 @@ import UIKit
 
 class SKActionView: UIView {
     internal weak var browser: SKPhotoBrowser?
+    internal var topView: UIView!
     internal var closeButton: SKCloseButton!
     internal var deleteButton: SKDeleteButton!
     
@@ -27,9 +28,17 @@ class SKActionView: UIView {
     convenience init(frame: CGRect, browser: SKPhotoBrowser) {
         self.init(frame: frame)
         self.browser = browser
-
+        
+        setupTopView()
+        addSubview(topView)
         configureCloseButton()
         configureDeleteButton()
+    }
+    
+    func setupTopView() {
+        let subFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: 80)
+        topView = UIView(frame: subFrame)
+        topView.backgroundColor = UIColor(white: 0, alpha: 0.2)
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -71,6 +80,14 @@ class SKActionView: UIView {
                             self.deleteButton.frame = deleteFrame
                         }
         }, completion: nil)
+    }
+    
+    func displayTopView(hidden: Bool) {
+        if !hidden {
+            topView.isHidden = false
+            return
+        }
+        topView.isHidden = true
     }
     
     @objc func closeButtonPressed(_ sender: UIButton) {
