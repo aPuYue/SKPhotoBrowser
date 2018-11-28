@@ -41,16 +41,18 @@ class SKToolbar: UIToolbar {
     }
     
     func displayToolActionButton(hidden: Bool) {
-        if !hidden {
+        UIView.animate(withDuration: 0.35) {
+            if hidden {
+                for i in self.items! {
+                    i.isEnabled = false
+                    i.tintColor = UIColor.clear
+                }
+                return
+            }
             for i in self.items! {
                 i.isEnabled = true
                 i.tintColor = UIColor.white
             }
-            return
-        }
-        for i in self.items! {
-            i.isEnabled = false
-            i.tintColor = UIColor.clear
         }
     }
 }
