@@ -587,12 +587,6 @@ private extension SKPhotoBrowser {
         // action view animation
         actionView.animate(hidden: hidden)
         
-        // action.topView animation
-        actionView.displayTopView(hidden: hidden)
-        
-        // action.topView display
-        actionView.displayTopView(hidden: hidden)
-        
         // toolbar display
         toolbar.displayToolActionButton(hidden: hidden)
         

@@ -67,6 +67,8 @@ class SKActionView: UIView {
     func animate(hidden: Bool) {
         let closeFrame: CGRect = hidden ? closeButton.hideFrame : closeButton.showFrame
         let deleteFrame: CGRect = hidden ? deleteButton.hideFrame : deleteButton.showFrame
+        let topViewFrame: CGRect = hidden ? CGRect(x: 0, y: 0, width: frame.size.width, height: 0) : CGRect(x: 0, y: 0, width: frame.size.width, height: 80)
+        
         UIView.animate(withDuration: 0.35,
                        animations: { () -> Void in
                         let alpha: CGFloat = hidden ? 0.0 : 1.0
@@ -79,15 +81,8 @@ class SKActionView: UIView {
                             self.deleteButton.alpha = alpha
                             self.deleteButton.frame = deleteFrame
                         }
+                        self.topView.frame = topViewFrame
         }, completion: nil)
-    }
-    
-    func displayTopView(hidden: Bool) {
-        if !hidden {
-            topView.isHidden = false
-            return
-        }
-        topView.isHidden = true
     }
     
     @objc func closeButtonPressed(_ sender: UIButton) {
